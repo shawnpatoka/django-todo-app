@@ -25,9 +25,10 @@
 
 <nav class="navbar navbar-dark bg-info">
   <div class="container-fluid">
-    <a class="navbar-brand"><i class="fas fa-check"></i> To Do List</a>
-    <form class="d-flex">
-      <input class="form-control me-2 navbar-search" type="search" placeholder="Search" aria-label="Search">
+    <a class="navbar-brand" href="{% url 'list' %}"><i class="fas fa-check"></i> To Do List</a>
+    <form method="POST" action="{% url 'search' %}" class="d-flex">
+      {% csrf_token %}
+      <input class="form-control me-2 navbar-search" type="search" placeholder="Search" name="searchquery">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>

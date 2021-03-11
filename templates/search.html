@@ -17,7 +17,15 @@
 
 <div class="col-sm-9">
 <div class="row p-5">
-{% for item in tasks %}
+
+<h2 class="mb-3">Search Page</h2>
+<div class="alert alert-success mb-4" role="alert">
+    <p class="mb-0">Showing results for <strong>"{{query}}"</strong>.</p>
+  </div>
+
+
+
+{% for item in object_list %}
 {% if item.complete == True %}
 <div class="row my-2">
     <div class="d-flex border-bottom pb-2">

@@ -52,3 +52,10 @@ def taskUnticked (rquest, pk):
     item.complete = False
     item.save()
     return redirect('/')
+
+
+def searchView (request):
+    query = request.POST.get('searchquery')
+    object_list = Task.objects.filter(title__icontains=query)
+    context = {'object_list': object_list, 'query': query,}
+    return render(request, 'search.html', context)
