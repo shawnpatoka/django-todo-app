@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+           
+<h1>To Do List</h1>
+<hr>
+
+    
+
+
+
+<form method="POST" action="/">
+    {% csrf_token %}
+    <h3>Add Item</h3>
+    {{form.title}}
+    <input type="submit" value="Add">
+</form>
+
+
+<br>
+<hr>
+<br>
+
+
+{% for item in tasks %}
+<div class="card mt-3">
+    <div class="card-body">
+    {% if item.complete == True %}
+        <s><sgtrong>{{ item }}</sgtrong></s>
+        {% else %}
+        <sgtrong>{{ item }}</sgtrong>
+    {% endif %}
+
+    <br><span style="color: red;">{{item.complete}}</span><br>
+    <p><a href="{% url 'tick_task' item.id %}">Tick</a> | <a href="{% url 'untick_task' item.id %}">Untick</a> </p>
+</div>
+</div>
+{% endfor %}
+
+{% endblock %}
