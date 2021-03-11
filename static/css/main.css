@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+html, body {
+    height: 100%;
+  }
+
+.full-height {
+    height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif !important;
+    font-weight: normal !important;
+}
+
+
+
+.bg-info {
+    background-image: linear-gradient(to right, #1764be , #2d81e1);
+}
+
+.bg-secondary {
+    background-color: #175094 !important;
+}
+
+.navbar-search {
+    font-family: 'Lato', sans-serif;
+    background-color: #62a2eb;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+}
+.navbar-search:focus {
+    font-family: 'Lato', sans-serif;
+    background-color: #62a2eb;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+.navbar-search::placeholder {
+    color: #fff;
+}
+
+.main-task-add {
+    font-family: 'Lato', sans-serif;
+    background-color: #f1f8ff;
+    border: none;
+    color: #3a3a3a;
+    font-size: 14px;
+}
+.main-task-add:focus {
+    font-family: 'Lato', sans-serif;
+    background-color: #f1f8ff;
+    border: none;
+    color: #3a3a3a;
+    font-size: 14px;
+}
+
+.main-task-add::placeholder {
+    color: #3a3a3a;
+}
+.btn-outline-success {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    border-color: #c7d0ff;
+    color: #ffffff;
+}
+
+.btn-outline-success:hover {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    background-color: #f4f5ff;
+    border-color: #f4f5ff;
+    color: #1764be;
+}
+
+.border-right {
+    border-right: 1px solid #e9e9e9;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #bdbdbd;
+}
+
+
+p.task-name {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+
+}
+
+p.text-default {
+    color: #3b3b3b;
+}
+
+.text-black-50 {
+    color: #b4b4b4 !important;
+}
+
+.text-danger {
+    color: #ff9393 !important;
+}

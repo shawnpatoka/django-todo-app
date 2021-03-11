@@ -17,7 +17,7 @@ def index(request):
 
 
     context = { 'tasks': tasks, 'form': form}
-    return render(request, 'tasks/list.html', context)
+    return render(request, 'list.html', context)
 
 
 def updateTask(request, pk):
@@ -31,17 +31,13 @@ def updateTask(request, pk):
             return redirect('/')
 
     context = {'form': form}
-    return render(request, 'tasks/update_task.html', context)
+    return render(request, 'update_task.html', context)
 
 
-def deleteTask(request, pk):
+def taskDelete (rquest, pk):
     item = Task.objects.get(id=pk)
-    if request.method == "POST":
-        item.delete()
-        return redirect('/')
-
-    context = {'item': item}
-    return render(request, 'tasks/delete.html', context)
+    item.delete()
+    return redirect('/')
 
 
 def taskTicked (rquest, pk):

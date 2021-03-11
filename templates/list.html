@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-sm-3 p-0 bg-light full-height border-right">
+    <div class="d-block bg-secondary text-white pt-4 pb-4 px-3">
+
+    <h6>Add Item</h6>
+    <form method="POST" action="/" class="d-flex">
+    {% csrf_token %}
+    <input class="form-control me-2 main-task-add" type="text" placeholder="Add Task" name="title">
+    <button class="btn btn-outline-success" type="submit">Add</button>
+    </form>
+
+    </div>
+</div>
+
+
+<div class="col-sm-9">
+<div class="row p-5">
+{% for item in tasks %}
+{% if item.complete == True %}
+<div class="row my-2">
+    <div class="d-flex border-bottom pb-2">
+        <div class="col-1"><a href="{% url 'untick_task' item.id %}"><span class="material-icons text-black-50">radio_button_checked</span></a></div>
+        <div class="col-9 text-black-50"><p class="task-name p-0 m-0">{{ item }}</p></div>
+        <div class="col-2 text-end"><a href=""><i class="fas fa-edit text-black-50"></i></a> | <a href=""><i class="fas fa-trash-alt text-danger"></i></a></div>
+    </div>
+</div>
+{% else %}
+<div class="row my-2">
+    <div class="d-flex border-bottom pb-2">
+        <div class="col-1"><a href="{% url 'tick_task' item.id %}"><span class="material-icons">radio_button_unchecked</span></a></div>
+        <div class="col-9"><p class="task-name text-default p-0 m-0">{{ item }}</p></div>
+        <div class="col-2 text-end"><a href="{% url 'update' item.id %}"><i class="fas fa-edit text-black-50"></i></a> | <a href="{% url 'delete' item.id %}"><i class="fas fa-trash-alt text-danger"></i></a></div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+</div>
+</div>
+
+{% endblock %}
