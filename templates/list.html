@@ -4,14 +4,17 @@
 <div class="col-sm-3 p-0 bg-light full-height border-right">
     <div class="d-block bg-secondary text-white pt-4 pb-4 px-3">
 
-    <h6>Quick Add Item</h6>
-    <form method="POST" action="/" class="d-flex">
-    {% csrf_token %}
-    <input class="form-control me-2 main-task-add" type="text" placeholder="Quick Add" name="title">
-    <button class="btn btn-outline-success" type="submit">Add</button>
-    </form>
+        <h6>Quick Add Item</h6>
+        <form method="POST" action="/" class="d-flex">
+        {% csrf_token %}
+        <input class="form-control me-2 main-task-add" type="text" placeholder="Quick Add" name="title">
+        <button class="btn btn-outline-success" type="submit">Add</button>
+        </form>
 
     </div>
+
+        <a href="#" class="d-block text-white text-center py-3 add-detail-link" data-bs-toggle="modal" data-bs-target="#addDetailedTaskModal"><i class="fas fa-plus"></i> Add a Detailed Task</a>
+
 </div>
 
 
@@ -29,7 +32,7 @@
 {% else %}
 <div class="row my-2">
     <div class="d-flex border-bottom pb-2">
-        <div class="col-1"><a href="{% url 'tick_task' item.id %}"><span class="material-icons">radio_button_unchecked</span></a></div>
+        <div class="col-1"><a href="{% url 'tick_task' item.id %}"><span class="material-icons" style="color: #2d81e1;">radio_button_unchecked</span></a></div>
         <div class="col-9"><p class="task-name text-default p-0 m-0">{{ item }}</p></div>
         <div class="col-2 text-end"><a href="{% url 'update' item.id %}"><i class="fas fa-edit text-black-50"></i></a> | <a href="{% url 'delete' item.id %}"><i class="fas fa-trash-alt text-danger"></i></a></div>
     </div>
