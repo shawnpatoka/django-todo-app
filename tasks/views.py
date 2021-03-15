@@ -4,7 +4,7 @@ from .models import *
 from .forms import *
 
 def index(request):
-    tasks = Task.objects.all().order_by('complete')
+    tasks = Task.objects.all().order_by('-created' )
     form = TaskForm()
 
     if request.method == "POST":
@@ -79,7 +79,7 @@ def taskUnticked (rquest, pk):
 
 def searchView (request):
     query = request.GET.get('search')
-    tasks = Task.objects.filter(title__icontains=query)
+    tasks = Task.objects.filter(title__icontains=query).order_by('title')
 
     if len(tasks) == 0:
         results = False

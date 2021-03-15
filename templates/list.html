@@ -4,11 +4,12 @@
 
 <table class="table table-hover">
     <tbody>
+
 {% for item in tasks %}
-{% if item.complete == True %}
+{% if item.complete == False %}
 <tr>
     <td class="col-1 align-top pt-3">
-        <a href="{% url 'untick_task' item.id %}"><span class="material-icons text-black-50">radio_button_checked</span></a>
+        <a href="{% url 'untick_task' item.id %}"><span class="material-icons" style="color: #2d81e1;">radio_button_unchecked</span></a>
     </td>
     <td class="col-7 align-top pt-3">
         <p class="task-name p-0 m-0">{{ item }}</p>
@@ -31,13 +32,17 @@
         </div>
     </td>
 </tr>
-{% else %}
+{% endif %}
+{% endfor %}
+
+{% for item in tasks %}
+{% if item.complete == True %}
 <tr>
     <td class="col-1 align-top pt-3">
-        <a href="{% url 'untick_task' item.id %}"><span class="material-icons" style="color: #2d81e1;">radio_button_checked</span></a>
+        <a href="{% url 'untick_task' item.id %}"><span class="material-icons text-black-50">radio_button_checked</span></a>
     </td>
     <td class="col-7 align-top pt-3">
-        <p class="task-name p-0 m-0">{{ item }}</p>
+        <p class="task-name p-0 m-0 text-black-50">{{ item }}</p>
         <div class="collapse" id="collapse{{item.id}}">
             <p class="task-detail mt-2">{{item.extra_info}}</p>
         </div>
