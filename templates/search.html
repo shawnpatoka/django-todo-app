@@ -1,27 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="col-sm-3 p-0 bg-light full-height border-right fixed-top quick-add">
-    <div class="d-block bg-secondary text-white pt-4 pb-4 px-3">
 
-        <h6>Quick Add Item</h6>
-        <form method="POST" action="/" class="d-flex ">
-        {% csrf_token %}
-        <input class="form-control me-2 main-task-add" type="text" placeholder="Quick Add" name="title">
-        <button class="btn btn-outline-success" type="submit">Add</button>
-        </form>
-
-    </div>
-
-        <a href="#" class="d-block text-white text-center py-3 add-detail-link" data-bs-toggle="modal" data-bs-target="#addDetailedTaskModal"><i class="fas fa-plus"></i> Add a Detailed Task</a>
-
-</div>
-
-
-<div class="col-sm-9 offset-md-3 mt-5">
-<div class="row p-5">
-
-    <h2 class="mb-3">Search Page</h2>
+    <h2 class="mb-3">Search Results</h2>
 
 
     {% if results == True %}
@@ -33,28 +14,66 @@
         <p class="mb-0">There are no results for your search: <strong>"{{query}}"</strong>.</p>
     </div>
     {% endif %}
-    
-    {% for item in object_list %}
+    <table class="table table-hover">
+        <tbody>
+    {% for item in tasks %}
     {% if item.complete == True %}
-    <div class="row my-2">
-        <div class="d-flex border-bottom pb-2">
-            <div class="col-1"><a href="{% url 'untick_task' item.id %}"><span class="material-icons text-black-50">radio_button_checked</span></a></div>
-            <div class="col-9 text-black-50"><p class="task-name p-0 m-0">{{ item }}</p></div>
-            <div class="col-2 text-end"><a href="{% url 'update' item.id %}"><i class="fas fa-edit text-black-50"></i></a> | <a href="{% url 'delete' item.id %}"><i class="fas fa-trash-alt text-danger"></i></a></div>
-        </div>
-    </div>
+    <tr>
+        <td class="col-1 align-top pt-3">
+            <a href="{% url 'untick_task' item.id %}"><span class="material-icons text-black-50">radio_button_checked</span></a>
+        </td>
+        <td class="col-7 align-top pt-3">
+            <p class="task-name p-0 m-0">{{ item }}</p>
+            <div class="collapse" id="collapse{{item.id}}">
+                <p class="task-detail mt-2">{{item.extra_info}}</p>
+            </div>
+        </td>
+        <td class="col-2 align-top pt-3">
+            {% if item.extra_info != '' %}
+            <p class="task-name p-0 m-0">
+                <a data-bs-toggle="collapse" href="#collapse{{item.id}}" role="button" aria-expanded="false">
+                    <span class="material-icons text-black-75">more_horiz</span>
+                </a>
+            </p>
+            {% endif %}
+        </td>
+        <td class="col-2 align-top pt-3 text-end">
+            <div class="hide">
+                <a href="{% url 'update' item.id %}"><span class="material-icons text-black-75 pe-2">mode_edit</span></a> <a href="{% url 'delete' item.id %}"><span class="material-icons text-danger">remove_circle</span></a>
+            </div>
+        </td>
+    </tr>
     {% else %}
-    <div class="row my-2">
-        <div class="d-flex border-bottom pb-2">
-            <div class="col-1"><a href="{% url 'tick_task' item.id %}"><span class="material-icons" style="color: #2d81e1;">radio_button_unchecked</span></a></div>
-            <div class="col-9"><p class="task-name text-default p-0 m-0">{{ item }}</p></div>
-            <div class="col-2 text-end"><a href="{% url 'update' item.id %}"><i class="fas fa-edit text-black-50"></i></a> | <a href="{% url 'delete' item.id %}"><i class="fas fa-trash-alt text-danger"></i></a></div>
-        </div>
-    </div>
+    <tr>
+        <td class="col-1 align-top pt-3">
+            <a href="{% url 'untick_task' item.id %}"><span class="material-icons" style="color: #2d81e1;">radio_button_checked</span></a>
+        </td>
+        <td class="col-7 align-top pt-3">
+            <p class="task-name p-0 m-0">{{ item }}</p>
+            <div class="collapse" id="collapse{{item.id}}">
+                <p class="task-detail mt-2">{{item.extra_info}}</p>
+            </div>
+        </td>
+        <td class="col-2 align-top pt-3">
+            {% if item.extra_info != '' %}
+            <p class="task-name p-0 m-0">
+                <a data-bs-toggle="collapse" href="#collapse{{item.id}}" role="button" aria-expanded="false">
+                    <span class="material-icons text-black-75">more_horiz</span>
+                </a>
+            </p>
+            {% endif %}
+        </td>
+        <td class="col-2 align-top pt-3 text-end">
+            <div class="hide">
+                <a href="{% url 'update' item.id %}"><span class="material-icons text-black-75 pe-2">mode_edit</span></a> <a href="{% url 'delete' item.id %}"><span class="material-icons text-danger">remove_circle</span></a>
+            </div>
+        </td>
+    </tr>
     {% endif %}
     {% endfor %}
+    </tbody>
+    </table>
 
-</div>
-</div>
+
 
 {% endblock %}

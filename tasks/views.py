@@ -20,6 +20,29 @@ def index(request):
     return render(request, 'list.html', context)
 
 
+def testView(request):
+    tasks = Task.objects.all().order_by('complete')
+    form = TaskForm()
+
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid:
+            form.save()
+        return redirect('/')
+
+    # completed = request.POST.get('newsletter_topimage')
+
+    
+    
+    print(Task.title)
+
+    context = { 
+        'tasks': tasks, 
+        'form': form, 
+        # 'extra_info_check': extra_info_check, 
+    }
+    return render(request, 'test.html', context)
+
 def updateTask(request, pk):
     task = Task.objects.get(id=pk)
     form = TaskForm(instance=task)
@@ -56,12 +79,12 @@ def taskUnticked (rquest, pk):
 
 def searchView (request):
     query = request.GET.get('search')
-    object_list = Task.objects.filter(title__icontains=query)
+    tasks = Task.objects.filter(title__icontains=query)
 
-    if len(object_list) == 0:
+    if len(tasks) == 0:
         results = False
     else:
         results = True
 
-    context = {'object_list': object_list, 'query': query, 'results': results,}
+    context = {'tasks': tasks, 'query': query, 'results': results,}
     return render(request, 'search.html', context)

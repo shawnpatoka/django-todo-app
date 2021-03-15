@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
-
-
-.full-height {
-    height: 93.5vh;
+@media only screen and (max-width: 575px) {
+    .sidebar-col {
+      height: 213px !important;
+    }
+    .task-col {
+      height: 80vh !important;
+    }
+    .border-right {
+        border: none !important;
+    }
+  }
+.sidebar-col {
+    height: 100vh;
+}
+.task-col {
+    height: 100vh;
+    overflow-y: scroll;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -15,9 +28,6 @@ h2 {
     color: #3a3a3a;
 }
 
-.quick-add {
-    margin-top: 56px;
-}
 .alert-success {
     background-color: #9deaaa;
 }
@@ -125,6 +135,13 @@ p.task-name {
 
 }
 
+p.task-detail {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #3a3a3a;
+}
+
 p.text-default {
     color: #3b3b3b;
 }
@@ -134,6 +151,29 @@ p.text-default {
 }
 
 .text-danger {
-    color: #ff9393 !important;
+    color: #f37d7d !important;
 }
 
+.text-black-75 {
+    color: #313131;
+}
+.pt-6 {
+    padding-top: 75px;
+}
+
+.hide {
+    display: none;
+}
+
+tbody tr:hover td div.hide {
+    display: block;
+    color: red;
+  }
+
+.table {
+    --bs-table-hover-bg: #f8f9fa; 
+}
+
+.hide .material-icons {
+    font-size: 17px;
+}
