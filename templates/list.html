@@ -9,7 +9,7 @@
 {% if item.complete == False %}
 <tr>
     <td class="col-1 align-top pt-3">
-        <a href="{% url 'untick_task' item.id %}"><span class="material-icons" style="color: #2d81e1;">radio_button_unchecked</span></a>
+        <a href="{% url 'tick_task' item.id %}"><span class="material-icons" style="color: #2d81e1;">radio_button_unchecked</span></a>
     </td>
     <td class="col-7 align-top pt-3">
         <p class="task-name p-0 m-0">{{ item }}</p>
