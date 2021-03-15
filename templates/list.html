@@ -14,7 +14,15 @@
     <td class="col-7 align-top pt-3">
         <p class="task-name p-0 m-0">{{ item }}</p>
         <div class="collapse" id="collapse{{item.id}}">
-            <p class="task-detail mt-2">{{item.extra_info}}</p>
+            <p class="task-detail mt-2 mb-0">{{item.extra_info}}</p>
+            <hr class="mb-2 mt-2">
+            {% for cats in item.category.all %}
+            <span class="badge badge-{{cats.color}}">{{cats.name}}</span>
+            {% endfor %}
+            <!-- <span class="badge badge-gray">Uncategorized</span>
+            <span class="badge badge-blue">Work</span>
+            <span class="badge badge-purple">School</span>
+            <span class="badge badge-red">Priority 1</span> -->
         </div>
     </td>
     <td class="col-2 align-top pt-3">
