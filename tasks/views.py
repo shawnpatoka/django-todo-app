@@ -6,7 +6,7 @@ from .forms import *
 def index(request):
     tasks = Task.objects.all().order_by('-created' )
     form = TaskForm()
-    detail_form = DetailTaskForm(initial={'category': ['6']})
+    detail_form = DetailTaskForm(initial={'category': ['15']})
 
     if request.method == "POST":
         form = TaskForm(request.POST)
