@@ -6,17 +6,33 @@ from .forms import *
 def index(request):
     tasks = Task.objects.all().order_by('-created' )
     form = TaskForm()
+    detail_form = DetailTaskForm(initial={'category': ['6']})
 
     if request.method == "POST":
         form = TaskForm(request.POST)
         if form.is_valid:
             form.save()
         return redirect('/')
+    
+    if request.method == "POST":
+        detail_form = DetailTaskForm(request.POST)
+        if detail_form.is_valid:
+            detail_form.save()
+        return redirect('/')
 
-    completed = request.POST.get('newsletter_topimage')
 
 
-    context = { 'tasks': tasks, 'form': form}
+    context = { 'tasks': tasks, 'form': form, 'detail_form':detail_form,}
+    return render(request, 'list.html', context)
+
+def detailTask(request):
+    detail_form = DetailTaskForm(initial={'category': ['15']})
+    if request.method == "POST":
+        detail_form = DetailTaskForm(request.POST)
+        if detail_form.is_valid:
+            detail_form.save()
+        return redirect('/')
+    context = {'detail_form':detail_form,}
     return render(request, 'list.html', context)
 
 

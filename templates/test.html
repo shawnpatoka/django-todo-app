@@ -4,65 +4,32 @@
 
 <h1>test page</h1>
 
+<style>
 
-<table class="table table-hover">
-    <tbody>
-{% for item in tasks %}
-{% if item.complete == True %}
-<tr>
-    <td class="col-1 align-top pt-3">
-        <a href="{% url 'untick_task' item.id %}"><span class="material-icons text-black-50">radio_button_checked</span></a>
-    </td>
-    <td class="col-7 align-top pt-3">
-        <p class="task-name p-0 m-0">{{ item }}</p>
-        <div class="collapse" id="collapse{{item.id}}">
-            <p class="task-detail mt-2">{{item.extra_info}}</p>
-        </div>
-    </td>
-    <td class="col-2 align-top pt-3">
-        {% if item.extra_info != '' %}
-        <p class="task-name p-0 m-0">
-            <a data-bs-toggle="collapse" href="#collapse{{item.id}}" role="button" aria-expanded="false">
-                <span class="material-icons text-black-75">more_horiz</span>
-            </a>
-        </p>
-        {% endif %}
-    </td>
-    <td class="col-2 align-top pt-3 text-end">
-        <div class="hide">
-            <a href="{% url 'update' item.id %}"><span class="material-icons text-black-75 pe-2">mode_edit</span></a> <a href="{% url 'delete' item.id %}"><span class="material-icons text-danger">remove_circle</span></a>
-        </div>
-    </td>
-</tr>
-{% else %}
-<tr>
-    <td class="col-1 align-top pt-3">
-        <a href="{% url 'untick_task' item.id %}"><span class="material-icons" style="color: #2d81e1;">radio_button_checked</span></a>
-    </td>
-    <td class="col-7 align-top pt-3">
-        <p class="task-name p-0 m-0">{{ item }}</p>
-        <div class="collapse" id="collapse{{item.id}}">
-            <p class="task-detail mt-2">{{item.extra_info}}</p>
-        </div>
-    </td>
-    <td class="col-2 align-top pt-3">
-        {% if item.extra_info != '' %}
-        <p class="task-name p-0 m-0">
-            <a data-bs-toggle="collapse" href="#collapse{{item.id}}" role="button" aria-expanded="false">
-                <span class="material-icons text-black-75">more_horiz</span>
-            </a>
-        </p>
-        {% endif %}
-    </td>
-    <td class="col-2 align-top pt-3 text-end">
-        <div class="hide">
-            <a href="{% url 'update' item.id %}"><span class="material-icons text-black-75 pe-2">mode_edit</span></a> <a href="{% url 'delete' item.id %}"><span class="material-icons text-danger">remove_circle</span></a>
-        </div>
-    </td>
-</tr>
-{% endif %}
-{% endfor %}
-</tbody>
-</table>
+.test-form ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+
+</style>
+
+<form action="" method="POST">
+{% csrf_token %}
+<div class="test-form">
+    <div class="mb-3">
+        <label class="form-label">Task</label>
+        <input type="text" name="title" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Extra Info</label>
+        <input type="text" name="extra_info" class="form-control">
+    </div>
+    {{ detail_form.category }}
+    <input type="submit">
+</div>
+</form>
+
+
 
 {% endblock %}
