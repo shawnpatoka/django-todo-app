@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='/go-away/')
 def index(request):
     tasks = Task.objects.all().order_by('-created' )
     form = TaskForm()
@@ -25,6 +28,7 @@ def index(request):
     context = { 'tasks': tasks, 'form': form, 'detail_form':detail_form,}
     return render(request, 'list.html', context)
 
+@login_required(login_url='/go-away/')
 def detailTask(request):
     detail_form = DetailTaskForm(initial={'category': ['15']})
     if request.method == "POST":
@@ -35,7 +39,7 @@ def detailTask(request):
     context = {'detail_form':detail_form,}
     return render(request, 'list.html', context)
 
-
+@login_required(login_url='/go-away/')
 def testView(request):
     tasks = Task.objects.all().order_by('complete')
     form = TaskForm()
@@ -58,7 +62,7 @@ def testView(request):
         # 'extra_info_check': extra_info_check, 
     }
     return render(request, 'test.html', context)
-
+@login_required(login_url='/go-away/')
 def updateTask(request, pk):
     task = Task.objects.get(id=pk)
     form = TaskForm(instance=task)
@@ -72,27 +76,27 @@ def updateTask(request, pk):
     context = {'form': form}
     return render(request, 'update_task.html', context)
 
-
+@login_required(login_url='/go-away/')
 def taskDelete (rquest, pk):
     item = Task.objects.get(id=pk)
     item.delete()
     return redirect('/')
 
-
+@login_required(login_url='/go-away/')
 def taskTicked (rquest, pk):
     item = Task.objects.get(id=pk)
     item.complete = True
     item.save()
     return redirect('/')
 
-
+@login_required(login_url='/go-away/')
 def taskUnticked (rquest, pk):
     item = Task.objects.get(id=pk)
     item.complete = False
     item.save()
     return redirect('/')
 
-
+@login_required(login_url='/go-away/')
 def searchView (request):
     query = request.GET.get('search')
     tasks = Task.objects.filter(title__icontains=query).order_by('title')
@@ -104,3 +108,8 @@ def searchView (request):
 
     context = {'tasks': tasks, 'query': query, 'results': results,}
     return render(request, 'search.html', context)
+
+
+def goawayView (request):
+
+    return render(request, 'goaway.html')

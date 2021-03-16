@@ -11,6 +11,7 @@ urlpatterns = [
     path('untick-task/<str:pk>/', views.taskUnticked, name="untick_task"),
     path('search/', views.searchView, name="search"),
     path('test/', views.testView, name="test"),
+    path('go-away/', views.goawayView, name="goaway"),
 
 
 
