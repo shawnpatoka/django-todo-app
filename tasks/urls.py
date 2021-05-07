@@ -10,8 +10,8 @@ urlpatterns = [
     path('tick-task/<str:pk>/', views.taskTicked, name="tick_task"),
     path('untick-task/<str:pk>/', views.taskUnticked, name="untick_task"),
     path('search/', views.searchView, name="search"),
-    path('test/', views.testView, name="test"),
     path('go-away/', views.goawayView, name="goaway"),
+    path('filter/<str:pk>/', views.filterTasks, name="filter") # working on this right now. Need to change to POST i think.
 
 
 
