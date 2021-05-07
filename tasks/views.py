@@ -4,8 +4,6 @@ from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 
-def goawayView (request):
-    return render(request, 'goaway.html')
 
 
 def index(request):
@@ -94,11 +92,11 @@ def searchView (request):
 
 
 
-def filterTasks (request, pk):
-    filter_cats = request.GET.get('filter_cats')
-    tasks = Task.objects.filter(category=pk).order_by('title')
-    context = {'tasks': tasks}
-    print(filter_cats)
-    return render(request, 'list.html', context)
+# def filterTasks (request, pk):
+#     filter_cats = request.GET.get('filter_cats')
+#     tasks = Task.objects.filter(category=pk).order_by('title')
+#     context = {'tasks': tasks}
+#     print(filter_cats)
+#     return render(request, 'list.html', context)
 
 

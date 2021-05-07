@@ -48,16 +48,9 @@
     <a href="#" class="d-block text-white text-center py-3 add-detail-link" data-bs-toggle="modal" data-bs-target="#addDetailedTaskModal"><i class="fas fa-plus"></i> Add a Detailed Task</a>
 
     <br><br>
-    <form action="{% url 'filter' %}" method="GET">
-      <input class="form-control me-2" type="text" placeholder="filter" name="filter_cats">
-      <button class="btn btn-danger" type="submit">search</button>
-    </form>
+    
 
 
-<!--     WORKING ON THIS RIGHT NOW     -->
-    {% for cat in categories %}
-    - <a href="{% url 'filter' cat.id %}">{{ cat }} {{ cat.id }}</a><br>
-    {% endfor %}
 
 
 
